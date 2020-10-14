@@ -6,7 +6,7 @@
 
 /* Estructura principal que representa la clase "rectángulo" */
 typedef struct {
-	shape_t super; 			// Clase de la cual se hereda
+	shape_t * super; 			// Clase de la cual se hereda
 	uint32_t height;		// Altura del rectángulo
 	uint32_t width;			// Ancho del rectángulo
 	float rotation_angle;	// Ángulo en el cual se encuentra rotada la figura
@@ -20,6 +20,14 @@ typedef struct {
 bool rectangle_ctor(rectangle_t *me, uint32_t position_x, uint32_t position_y, 
 					uint32_t height, uint32_t width);
 
+
+/** 	@brief: Destructor del objeto "rectangle"
+*		@params: Recibe el puntero al objeto.
+*		@return: void
+**/
+void rectangle_dtor(rectangle_t *me);
+
+
 /** 	@brief: Rota al rectángulo un cierto ángulo.
 *		@params: recibe el puntero al objeto y el valor en radianes a rotar.
 *		@return: Devuelve verdadero si la operación resultó exitosa.
@@ -31,8 +39,18 @@ bool rectangle_rotate(rectangle_t *me, float angle);
 *		@params: recibe el puntero al objeto.
 *		@return: Devuelve el valor del área.
 **/
+
+bool rectangle_move(rectangle_t * me, uint32_t dx, uint32_t dy);
+
+
+
 uint32_t rectangle_get_area(rectangle_t *me);
 
 
+/** 	@brief: Guarda el rectamgulo en una imagen
+*		@params: Recibe el puntero al objeto y el puntero a la imagen donde se guarda.
+*		@return: verdadero si la operación se realizó exitosamente
+**/
+bool rectangle_plot(rectangle_t *me, image_t *image);
 
 #endif
